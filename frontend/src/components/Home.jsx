@@ -579,6 +579,19 @@ const Home = () => {
     const saved = localStorage.getItem("spentItems");
     return saved ? JSON.parse(saved) : {};
   });
+  // Check if trip is completed (all days have passed)
+  const checkTripCompletion = () => {
+    if (!trip || !trip.endDate) return false;
+    
+    const today = new Date();
+    const endDate = new Date(trip.endDate);
+    
+    // Reset to start of day for comparison
+    today.setHours(0, 0, 0, 0);
+    endDate.setHours(0, 0, 0, 0);
+    
+    return today > endDate;
+  };
 
   // --- Checklist ---
   const handleItemToggle = (id, price) => {
@@ -706,101 +719,117 @@ const Home = () => {
     </div>
   );
 }
+    // ... your existing code above ...
 
+if (!trip) return <div className="error">❌ Could not load itinerary.</div>;
 
+const itineraryDays = [
+  { day: "Pre-Trip", date: trip.startDate, title: "Setup & Essential Booking" },
+  ...(trip.days || []),
+];
 
-  if (!trip) return <div className="error">❌ Could not load itinerary.</div>;
+// ✅ ADD THIS LINE: Calculate isLastDay
+const isLastDay = activeDay === itineraryDays.length - 1;
 
-  const itineraryDays = [
-    { day: "Pre-Trip", date: trip.startDate, title: "Setup & Essential Booking" },
-    ...(trip.days || []),
-  ];
+const renderItineraryContent = () => {
+  const total = calculateTotalSpent();
+  const formatted = total.toLocaleString();
 
-  const renderItineraryContent = () => {
-    const total = calculateTotalSpent();
-    const formatted = total.toLocaleString();
-
-    const ChecklistItem = ({ id, text, price }) => {
-      const numeric = parseFloat(String(price).replace(/[^0-9.]/g, "")) || 0;
-      return (
-        <li className={spentItems[id] ? "checked" : ""}>
-          <label>
-            <input
-              type="checkbox"
-              checked={!!spentItems[id]}
-              onChange={() => handleItemToggle(id, price)}
-            />
-            <span className="item-text">{text}</span>
-            <span className="item-price">₹{numeric.toLocaleString()}</span>
-          </label>
-        </li>
-      );
-    };
-
-    // --- Pre-trip page ---
-    if (activeDay === 0) {
-      return (
-        <div className="itinerary-sections">
-          <div className="budget-summary-floating">
-            Current Spent: ₹{formatted}
-          </div>
-
-          <section className="itinerary-section">
-            <h2>🚗 Transport</h2>
-            <ul className="list checklist-list">
-              <ChecklistItem
-                id="transport"
-                text={trip.transport?.detail}
-                price={trip.transport?.price}
-              />
-            </ul>
-          </section>
-
-          <section className="itinerary-section">
-            <h2>🏨 Stays</h2>
-           <ul className="list checklist-list">
-              {trip.stays?.map((s, i) => (
-                <ChecklistItem id={`stay-${i}`} key={i} text={s.detail} price={s.price} />
-              ))}
-            </ul>
-          </section>
-
-          <section className="itinerary-section">
-            <h2>📦 Packing List</h2>
-            <ol className="list">
-              {trip.packingList?.map((p, i) => <li key={i}>{p}</li>)}
-            </ol>
-          </section>
-        </div>
-      );
-    }
-
-    // --- Daily activity page ---
-    const day = trip.days[activeDay - 1];
-
+  const ChecklistItem = ({ id, text, price }) => {
+    const numeric = parseFloat(String(price).replace(/[^0-9.]/g, "")) || 0;
     return (
-      <div className="daily-itinerary-detail">
+      <li className={spentItems[id] ? "checked" : ""}>
+        <label>
+          <input
+            type="checkbox"
+            checked={!!spentItems[id]}
+            onChange={() => handleItemToggle(id, price)}
+          />
+          <span className="item-text">{text}</span>
+          <span className="item-price">₹{numeric.toLocaleString()}</span>
+        </label>
+      </li>
+    );
+  };
+
+  // --- Pre-trip page ---
+  if (activeDay === 0) {
+    return (
+      <div className="itinerary-sections">
         <div className="budget-summary-floating">
           Current Spent: ₹{formatted}
         </div>
 
-        <h2>
-          📅 {day.day} - {day.title}
-        </h2>
-
-        <ul className="list checklist-list">
-          {day.activities?.map((act, i) => (
+        <section className="itinerary-section">
+          <h2>🚗 Transport</h2>
+          <ul className="list checklist-list">
             <ChecklistItem
-              id={`${day.day}-${i}`}
-              key={i}
-              text={act.name}
-              price={act.price}
+              id="transport"
+              text={trip.transport?.detail}
+              price={trip.transport?.price}
             />
-          ))}
-        </ul>
+          </ul>
+        </section>
+
+        <section className="itinerary-section">
+          <h2>🏨 Stays</h2>
+          <ul className="list checklist-list">
+            {trip.stays?.map((s, i) => (
+              <ChecklistItem id={`stay-${i}`} key={i} text={s.detail} price={s.price} />
+            ))}
+          </ul>
+        </section>
+
+        <section className="itinerary-section">
+          <h2>📦 Packing List</h2>
+          <ol className="list">
+            {trip.packingList?.map((p, i) => <li key={i}>{p}</li>)}
+          </ol>
+        </section>
       </div>
     );
-  };
+  }
+
+  // --- Daily activity page ---
+  const day = trip.days[activeDay - 1];
+
+  return (
+    <div className="daily-itinerary-detail">
+      <div className="budget-summary-floating">
+        Current Spent: ₹{formatted}
+      </div>
+
+      <h2>
+        📅 {day.day} - {day.title}
+      </h2>
+
+      <ul className="list checklist-list">
+        {day.activities?.map((act, i) => (
+          <ChecklistItem
+            id={`${day.day}-${i}`}
+            key={i}
+            text={act.name}
+            price={act.price}
+          />
+        ))}
+      </ul>
+      
+      {/* ✅ Show "Complete Your Trip" button only on the last day */}
+      {isLastDay && (
+        <div className="complete-trip-button-container">
+          <button 
+            className="complete-trip-btn"
+            onClick={() => navigate(`/tripcomplete/${trip._id}`)} 
+          >
+            ✅ Complete Your Trip
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// ... rest of your code remains the same ...
 
   return (
     <div className="home-container">
@@ -834,6 +863,7 @@ const Home = () => {
         </div>
 
         {renderItineraryContent()}
+  
       </main>
     </div>
   );

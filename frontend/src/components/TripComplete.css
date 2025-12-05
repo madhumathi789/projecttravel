@@ -1,0 +1,281 @@
+/* TripComplete.css - Full width dashboard style */
+
+.trip-complete-container {
+  padding: 15px 25px;
+  margin: 20px 0 0 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.trip-complete-card {
+  background: white;
+  border-radius: 10px;
+  padding: 25px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Trip Header Section - Full width */
+.trip-header-section {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  width: 100%;
+}
+
+.trip-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 10px;
+  line-height: 1.2;
+  width: 100%;
+}
+
+.trip-duration-budget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: #4a5568;
+  font-size: 16px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.divider {
+  color: #a0aec0;
+}
+
+.total-budget {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  padding: 8px 20px;
+  border-radius: 6px;
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  background: #f8f9fa;
+  border: 1px solid #e2e8f0;
+}
+
+/* Success Message Box - Full width */
+.success-message-box {
+  background: #f0fff4;
+  border-radius: 8px;
+  padding: 25px 30px;
+  margin: 25px 0 30px 0;
+  border-left: 4px solid #38a169;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.success-icon {
+  background: #38a169;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 auto 15px auto;
+}
+
+.success-content {
+  text-align: center;
+  width: 100%;
+}
+
+.success-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.success-description {
+  font-size: 16px;
+  color: #4a5568;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 100%;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Plan Next Trip Button - Full width emphasis */
+.next-trip-section {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid #e5e7eb;
+  width: 100%;
+}
+
+.plan-next-trip-btn {
+  background: #dc2626; /* RED background */
+  color: white; /* WHITE text */
+  border: none;
+  padding: 16px 50px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  font-family: inherit;
+  display: inline-block;
+  min-width: 300px;
+}
+
+.plan-next-trip-btn:hover {
+  background: #ff0000; /* Darker red on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+}
+
+.plan-next-trip-btn:active {
+  transform: translateY(0);
+}
+
+/* Loading and Error States */
+.loading {
+  text-align: center;
+  padding: 60px;
+  color: #4a5568;
+  font-size: 18px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.error-message {
+  text-align: center;
+  padding: 60px;
+  color: #c53030;
+  font-size: 18px;
+  background: #fff5f5;
+  border-radius: 8px;
+  border: 1px solid #fed7d7;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Make it full width like dashboard */
+@media (min-width: 768px) {
+  .trip-complete-container {
+    padding: 20px 40px;
+  }
+  
+  .trip-complete-card {
+    padding: 30px 40px;
+  }
+  
+  .success-message-box {
+    padding: 30px 40px;
+  }
+  
+  .plan-next-trip-btn {
+    padding: 18px 60px;
+    font-size: 20px;
+    min-width: 350px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .trip-complete-container {
+    padding: 25px 50px;
+  }
+  
+  .trip-complete-card {
+    padding: 35px 50px;
+  }
+  
+  .trip-title {
+    font-size: 28px;
+  }
+  
+  .success-message-box {
+    padding: 35px 50px;
+  }
+  
+  .success-title {
+    font-size: 22px;
+  }
+  
+  .plan-next-trip-btn {
+    padding: 20px 70px;
+    font-size: 22px;
+    min-width: 400px;
+  }
+}
+
+/* Responsive for mobile */
+@media (max-width: 767px) {
+  .trip-complete-container {
+    padding: 10px 15px;
+  }
+  
+  .trip-complete-card {
+    padding: 20px;
+  }
+  
+  .trip-title {
+    font-size: 20px;
+  }
+  
+  .trip-duration-budget {
+    flex-direction: column;
+    gap: 5px;
+    font-size: 14px;
+  }
+  
+  .divider {
+    display: none;
+  }
+  
+  .total-budget {
+    font-size: 16px;
+    padding: 6px 15px;
+  }
+  
+  .success-message-box {
+    padding: 20px;
+    margin: 20px 0;
+  }
+  
+  .success-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+  
+  .success-title {
+    font-size: 18px;
+  }
+  
+  .success-description {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  
+  .plan-next-trip-btn {
+    width: 100%;
+    min-width: auto;
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+}

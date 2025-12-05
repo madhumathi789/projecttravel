@@ -1,94 +1,461 @@
-/* .budget-container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+/* Budget.css */
+.budget-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.budget-container h2 {
-  margin-bottom: 15px;
-  color: #333;
+.budget-header {
+  margin-bottom: 24px;
 }
 
-.budget-container p {
-  font-size: 16px;
-  color: #666;
-} */
-/* 
-.budget-page-container {
-  padding: 20px;
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-}
-
-/* 🔥 White card background for the whole budget page */
-.budget-card-wrapper {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 16px;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.10);
-  margin-top: 20px;
-}
-
-/* Header */
-.budget-header-block h1 {
-  margin: 0;
-  font-size: 28px;
-}
-
-.budget-meta {
+.budget-header h1 {
   display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  margin: 0 0 8px 0;
+}
+
+.budget-header p {
+  color: #6b7280;
+  margin: 0 0 12px 0;
+}
+
+.refresh-btn {
+  padding: 8px 16px;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
   font-size: 14px;
-  opacity: 0.8;
 }
 
-/* Summary Cards */
-.budget-cards {
-  margin-top: 25px;
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+.debug-info {
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin: 8px 0;
+  color: #495057;
+  font-size: 12px;
 }
 
-.budget-card {
-  background: #ffffff;
-  padding: 18px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+.error-alert {
+  background: #fff1f2;
+  color: #b91c1c;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #fecaca;
+}
+
+.empty-state {
+  padding: 40px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #eef2ff;
   text-align: center;
 }
 
-.budget-card h3 {
+.empty-icon {
+  height: 64px;
+  width: 64px;
+  margin: 0 auto 16px;
+  border-radius: 32px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state h3 {
   margin: 0 0 8px 0;
+}
+
+.empty-state p {
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.debug-section {
+  margin-top: 24px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.debug-section h4 {
+  margin: 0 0 8px 0;
+  color: #4b5563;
+}
+
+.debug-section ul {
+  margin: 8px 0;
+  padding-left: 20px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Trip Grid */
+.trips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.trip-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+  border: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trip-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.trip-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.trip-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trip-info {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.trip-info h3 {
+  margin: 0 0 4px 0;
   font-size: 16px;
-  opacity: 0.8;
 }
 
-.value {
-  font-size: 22px;
-  font-weight: bold;
+.trip-info p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
 }
 
-/* Per Day Section */
-.per-day-section {
-  margin-top: 40px;
+.trip-status {
+  font-size: 12px;
+  padding: 6px 10px;
+  background: #ecfdf5;
+  color: #065f46;
+  border-radius: 999px;
+}
+
+.trip-details {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.trip-detail {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.trip-footer {
+  margin-top: 16px;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trip-footer span {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* Detail View */
+.budget-detail-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.back-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #f3f4f6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  background: #eef2ff;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.info-icon {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.info-value {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.budget-timeline {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  border: 1px solid #f3f4f6;
+}
+
+.budget-summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.budget-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.budget-amount {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.balance {
+  color: #059669;
+}
+
+.used {
+  color: #6b7280;
+  opacity: 0.7;
+  text-align: right;
+}
+
+.progress-bar {
+  height: 20px;
+  background: #f3f4f6;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+}
+
+.progress-balance {
+  background: linear-gradient(90deg, #34d399, #10b981);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  transition: width 0.3s ease;
+}
+
+.progress-used {
+  background: #e6e6e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
+  font-weight: 700;
+  font-size: 12px;
+  transition: width 0.3s ease;
+}
+
+/* Daily Breakdown */
+.daily-breakdown {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid #f3f4f6;
+}
+
+.daily-breakdown h3 {
+  margin: 0 0 16px 0;
 }
 
 .days-list {
-  margin-top: 15px;
   display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
 }
 
 .day-card {
-  background: #fff;
-  padding: 16px;
-  border-radius: 10px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #f3f4f6;
 }
 
-.day-card h4 {
-  margin: 0 0 6px 0;
+.day-header {
+  width: 100%;
+  text-align: left;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.day-header:hover {
+  background: #ecfeff;
+}
+
+.day-info {
+  flex: 1;
+}
+
+.day-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.day-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.day-total {
+  text-align: right;
+}
+
+.day-amount {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.day-toggle {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.day-activities {
+  padding: 16px;
+  background: #fff;
+}
+
+.activity-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
+  border: 1px solid #eef2ff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+  margin-bottom: 8px;
+}
+
+.activity-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.activity-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #f0f9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.activity-detail {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.activity-cost {
+  text-align: right;
+}
+
+.activity-price {
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.activity-time {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.no-activities,
+.no-days {
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Loading */
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
 }
