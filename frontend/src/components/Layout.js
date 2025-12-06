@@ -191,14 +191,11 @@ const Layout = () => {
       <aside className="app-sidebar">
 
         {/* LOGO */}
-        {hideLogo ? (
-          <div className="logo-placeholder"></div>
-        ) : (
-          <div className="logo">
-            <img src="/LOGO.jpg" alt="logo" className="logo-img" />
-            <span className="logo-text">TravelZen AI</span>
+        <div className="logo">
+          <img src="/LOGO.jpg" alt="logo" className="logo-img" />
+          <span className="logo-text">TravelZen AI</span>
           </div>
-        )}
+
 
         {/* SIDEBAR NAVIGATION */}
         <div className="nav-wrapper">

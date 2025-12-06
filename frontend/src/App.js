@@ -16,6 +16,8 @@ import Profile from "./components/Profile.jsx";
 import EditPreference from "./components/editpreference.jsx";
 import MyTrips from "./components/MyTrips.jsx";
 import TripComplete from "./components/TripComplete.jsx";
+import ItineraryView from "./components/ItineraryView.jsx"
+
 
 
 function App() {
@@ -42,6 +44,7 @@ function App() {
           <Route path="home" element={<Home />} />
           <Route path="home/:id" element={<Home />} />
           <Route path="MyTrip" element={<MyTrips />} />
+          <Route path="/MyTrips/:id" element={<ItineraryView />} />
           <Route path="memories" element={<Memories />} />
           <Route path="journal" element={<Journal />} />
           <Route path="budget" element={<Budget />} />
